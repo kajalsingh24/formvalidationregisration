@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+                              <meta charset="UTF-8">
+                              <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                              <title>Document</title>
+</head>
+<body>
+   
+                              <input type="text" placeholder="title" name="title" id="title" />
+                              <input type="text" placeholder="firstName" name="firstName" id="firstName" />
+                              <input type="text" placeholder="lastName" name="lastName"  id="lastName"/>
+                              <input type="text" placeholder="email" name="email" id="email" />
+                              <input type="text" placeholder="password" name="password" id="password" /> 
+                              <input type="text" placeholder="confirmPassword" name="confirmPassword" id="confirmPassword" />
+                              <input type="checkbox"  name="acceptTerms"  id="acceptTerms"/>
+                    
+                              <button onclick="saveData()"> Save</button> 
+                              
+   <script>
+     function saveData()
+        {
+            var obj = {
+                title : document.getElementById("title").value,
+                firstName: document.getElementById("firstName").value,
+                lastName: document.getElementById("lastName").value,
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value,
+                confirmPassword: document.getElementById("confirmPassword").value,
+                acceptTerms: true
+
+            }
+
+            fetch("http://localhost:4000/accounts/register",{
+                method: "POST",
+                body : JSON.stringify(obj),
+               headers: {
+        "Content-type": "application/json; charset=UTF-8"
+    }
+            }).then(y=>y).then(y=> {
+                console.log(y);
+            })
+
+
+
+
+        }
+                             
+   </script>                           
+</body>
+</html>
